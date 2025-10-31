@@ -15,6 +15,8 @@ tableextension 50100 "ResourceTableExt" extends "Resource"
             end;
         }
     }
+
+    // "Resource" table extension
     trigger OnBeforeModify()
     var
         Utility: Codeunit "UtilityCod";
@@ -23,6 +25,7 @@ tableextension 50100 "ResourceTableExt" extends "Resource"
         ValFromDB := Utility.InspectDirectUnitCost(Rec."No.");
     end;
 
+    // "Resource" table extension
     trigger OnAfterModify()
     var
         Utility: Codeunit "UtilityCod";

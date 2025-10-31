@@ -25,14 +25,23 @@ pageextension 50101 "ResourceListPageExt" extends "Resource List"
                     Resource: Record "Resource";
                 begin
                     Resource.Get('KATHERINE');
-                    // Resource."Direct Unit Cost" += 10;
-                    // Resource.Modify(true);
 
-                    // Rec.Validate("Direct Unit Cost", Rec."Direct Unit Cost" + 10);
-                    Resource.Validate("Direct Unit Cost", Resource."Direct Unit Cost" + 10);
+                    Resource."Direct Unit Cost" += 10;
                     Resource.Modify(true);
+
+                    // Resource.Validate("Direct Unit Cost", Resource."Direct Unit Cost" + 10);
+                    // Resource.Modify(true);
                 end;
             }
         }
     }
+
+    trigger OnModifyRecord(): Boolean
+    var
+        Utility: Codeunit "UtilityCod";
+        ValFromDB: Decimal;
+    begin
+        ValFromDB := Utility.InspectDirectUnitCost(Rec."No.");
+        exit(true);
+    end;
 }

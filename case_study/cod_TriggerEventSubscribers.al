@@ -11,7 +11,7 @@ codeunit 50113 "Demo EmpRes EventSubs"
         // // solution 2: modify in trigger event
         // if Resource.Get(Rec."No.") then begin
         //     Resource.Phone := Rec.Phone;
-        //     Resource.Modify(Setup.GetIsRunTrigger());
+        //     Resource.Modify(false);
         // end;
     end;
 
@@ -23,7 +23,6 @@ codeunit 50113 "Demo EmpRes EventSubs"
 
     // ------------------------------------------------------------
     // subscribe to Resource table
-
     [EventSubscriber(ObjectType::Table, Database::"Demo Resource", 'OnBeforeModifyEvent', '', false, false)]
     local procedure HandleResourceBeforeModify(var Rec: Record "Demo Resource"; var xRec: Record "Demo Resource"; RunTrigger: Boolean)
     var
@@ -33,7 +32,7 @@ codeunit 50113 "Demo EmpRes EventSubs"
         // // solution 2: modify in trigger event
         // if Emp.Get(Rec."No.") then begin
         //     Emp.Phone := Rec.Phone;
-        //     Emp.Modify(Setup.GetIsRunTrigger());
+        //     Emp.Modify(false);
         // end;
     end;
 

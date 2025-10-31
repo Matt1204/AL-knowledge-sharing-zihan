@@ -32,7 +32,7 @@ table 50110 "Demo Employee"
     begin
         if Resource.Get(Rec."No.") then begin
             Resource.Phone := Rec.Phone;
-            Resource.Modify(true);
+            Resource.Modify(false);
         end;
     end;
 

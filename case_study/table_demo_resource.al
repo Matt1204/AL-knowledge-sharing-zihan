@@ -32,7 +32,7 @@ table 50111 "Demo Resource"
     }
 
 
-    // // solution 1: modify in table trigger 
+    // solution 1: modify in table trigger 
     trigger OnModify()
     var
         Employee: Record "Demo Employee";
