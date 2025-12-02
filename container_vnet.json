@@ -1,0 +1,145 @@
+{
+    "properties": {
+        "sku": "Standard",
+        "isCreatedFromStandbyPool": false,
+        "provisioningState": "Succeeded",
+        "provisioningTimeoutInSeconds": 1800,
+        "isCustomProvisioningTimeout": false,
+        "containers": [
+            {
+                "name": "bc-container-1106",
+                "properties": {
+                    "image": "mcr.microsoft.com/businesscentral:ltsc2022",
+                    "ports": [
+                        {
+                            "protocol": "TCP",
+                            "port": 80
+                        },
+                        {
+                            "protocol": "TCP",
+                            "port": 1433
+                        },
+                        {
+                            "protocol": "TCP",
+                            "port": 443
+                        },
+                        {
+                            "protocol": "TCP",
+                            "port": 7049
+                        },
+                        {
+                            "protocol": "TCP",
+                            "port": 7048
+                        }
+                    ],
+                    "environmentVariables": [
+                        {
+                            "name": "artifacturl",
+                            "value": "https://bcartifacts-exdbf9fwegejdqak.b02.azurefd.net/onprem/27.0.38460.40242/us"
+                        },
+                        {
+                            "name": "ACCEPT_EULA",
+                            "value": "Y"
+                        },
+                        {
+                            "name": "username",
+                            "value": "admin_zihan"
+                        },
+                        {
+                            "name": "password",
+                            "value": "pwd_zihan"
+                        }
+                    ],
+                    "configMap": {
+                        "keyValuePairs": {}
+                    },
+                    "instanceView": {
+                        "restartCount": 0,
+                        "currentState": {
+                            "state": "Running",
+                            "startTime": "2025-11-06T21:36:51.05Z",
+                            "detailStatus": ""
+                        },
+                        "events": [
+                            {
+                                "count": 3,
+                                "firstTimestamp": "2025-11-06T21:32:23Z",
+                                "lastTimestamp": "2025-11-06T21:36:38Z",
+                                "name": "Pulling",
+                                "message": "pulling image \"mcr.microsoft.com/businesscentral@sha256:6335db86ec285d2035f007455454bedd3fac8399d20b1e6470b357c40ed0ef6f\"",
+                                "type": "Normal"
+                            },
+                            {
+                                "count": 3,
+                                "firstTimestamp": "2025-11-06T21:36:27Z",
+                                "lastTimestamp": "2025-11-06T21:36:38Z",
+                                "name": "Pulled",
+                                "message": "Successfully pulled image \"mcr.microsoft.com/businesscentral@sha256:6335db86ec285d2035f007455454bedd3fac8399d20b1e6470b357c40ed0ef6f\"",
+                                "type": "Normal"
+                            },
+                            {
+                                "count": 1,
+                                "firstTimestamp": "2025-11-06T21:36:51Z",
+                                "lastTimestamp": "2025-11-06T21:36:51Z",
+                                "name": "Started",
+                                "message": "Started container",
+                                "type": "Normal"
+                            }
+                        ]
+                    },
+                    "resources": {
+                        "requests": {
+                            "memoryInGB": 4,
+                            "cpu": 0.5
+                        }
+                    }
+                }
+            }
+        ],
+        "initContainers": [],
+        "restartPolicy": "OnFailure",
+        "ipAddress": {
+            "ports": [
+                {
+                    "protocol": "TCP",
+                    "port": 80
+                },
+                {
+                    "protocol": "TCP",
+                    "port": 1433
+                },
+                {
+                    "protocol": "TCP",
+                    "port": 443
+                },
+                {
+                    "protocol": "TCP",
+                    "port": 7049
+                },
+                {
+                    "protocol": "TCP",
+                    "port": 7048
+                }
+            ],
+            "ip": "10.0.0.4",
+            "type": "Private"
+        },
+        "osType": "Windows",
+        "instanceView": {
+            "events": [],
+            "state": "Running"
+        },
+        "diagnostics": {
+            "logAnalytics": {
+                "workspaceId": "1803e79c-316f-4fc3-b877-4b8846716652",
+                "logType": "ContainerInstanceLogs"
+            }
+        }
+    },
+    "id": "/subscriptions/63a84b2d-645f-4748-ad4e-4444bac91b6e/resourceGroups/zihan_BC_docker/providers/Microsoft.ContainerInstance/containerGroups/bc-container-1106",
+    "name": "bc-container-1106",
+    "type": "Microsoft.ContainerInstance/containerGroups",
+    "location": "canadacentral",
+    "tags": {},
+    "apiVersion": "2019-12-01"
+}

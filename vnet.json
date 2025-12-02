@@ -1,0 +1,66 @@
+{
+    "name": "zihan_BC_docker-vnet",
+    "id": "/subscriptions/63a84b2d-645f-4748-ad4e-4444bac91b6e/resourceGroups/zihan_BC_docker/providers/Microsoft.Network/virtualNetworks/zihan_BC_docker-vnet",
+    "etag": "W/\"89c2207c-924e-427d-a76a-a54f2c4b8ccd\"",
+    "type": "Microsoft.Network/virtualNetworks",
+    "location": "canadacentral",
+    "properties": {
+        "provisioningState": "Succeeded",
+        "resourceGuid": "1ca90af0-d5b0-4246-999b-1aaa25484af0",
+        "addressSpace": {
+            "addressPrefixes": [
+                "10.0.0.0/24"
+            ]
+        },
+        "subnets": [
+            {
+                "name": "default",
+                "id": "/subscriptions/63a84b2d-645f-4748-ad4e-4444bac91b6e/resourceGroups/zihan_BC_docker/providers/Microsoft.Network/virtualNetworks/zihan_BC_docker-vnet/subnets/default",
+                "etag": "W/\"89c2207c-924e-427d-a76a-a54f2c4b8ccd\"",
+                "properties": {
+                    "provisioningState": "Succeeded",
+                    "addressPrefix": "10.0.0.0/24",
+                    "serviceAssociationLinks": [
+                        {
+                            "name": "acisal",
+                            "id": "/subscriptions/63a84b2d-645f-4748-ad4e-4444bac91b6e/resourceGroups/zihan_BC_docker/providers/Microsoft.Network/virtualNetworks/zihan_BC_docker-vnet/subnets/default/serviceAssociationLinks/acisal",
+                            "etag": "W/\"89c2207c-924e-427d-a76a-a54f2c4b8ccd\"",
+                            "type": "Microsoft.Network/virtualNetworks/subnets/serviceAssociationLinks",
+                            "properties": {
+                                "provisioningState": "Succeeded",
+                                "linkedResourceType": "Microsoft.ContainerInstance/containerGroups",
+                                "enabledForArmDeployments": false,
+                                "allowDelete": true,
+                                "subnetId": "00000000-0000-0000-0000-000000000000",
+                                "locations": [
+                                    "canadacentral"
+                                ]
+                            }
+                        }
+                    ],
+                    "delegations": [
+                        {
+                            "name": "ACIDelegationService",
+                            "id": "/subscriptions/63a84b2d-645f-4748-ad4e-4444bac91b6e/resourceGroups/zihan_BC_docker/providers/Microsoft.Network/virtualNetworks/zihan_BC_docker-vnet/subnets/default/delegations/ACIDelegationService",
+                            "etag": "W/\"89c2207c-924e-427d-a76a-a54f2c4b8ccd\"",
+                            "properties": {
+                                "provisioningState": "Succeeded",
+                                "serviceName": "Microsoft.ContainerInstance/containerGroups",
+                                "actions": [
+                                    "Microsoft.Network/virtualNetworks/subnets/action"
+                                ]
+                            },
+                            "type": "Microsoft.Network/virtualNetworks/subnets/delegations"
+                        }
+                    ],
+                    "privateEndpointNetworkPolicies": "Disabled",
+                    "privateLinkServiceNetworkPolicies": "Enabled"
+                },
+                "type": "Microsoft.Network/virtualNetworks/subnets"
+            }
+        ],
+        "virtualNetworkPeerings": [],
+        "enableDdosProtection": false
+    },
+    "apiVersion": "2024-01-01"
+}

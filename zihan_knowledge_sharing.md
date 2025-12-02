@@ -141,3 +141,47 @@ end;
     - OK, but not what we wanted. Both `Rec`,`xRec` in `OnModify()` somehow points to the updated value, somehow stops the recursion.
 5. Solution 5:
     - OK. single-direction sychronization => `Flowfield` cannot be updated
+
+
+--- 
+
+## Update a `Rec` in trigger event:
+- putting `Rec.Validate(NEW_VALUE)` in 
+    1. `OnBeforeInsertEvent`: `NEW_VALUE` is applied no matter insert from UI or `.Insert()`
+    2. `OnAfterInsertEvent`: `NEW_VALUE` is applied ONLY from UI, not from `.Insert()`
+
+## DB Transaction in BC
+```
+Every time a user enters data into a field, AL code may be triggered and a new transaction is automatically started. 
+The trigger code runs within this new transaction. Field data is sent to the server where it is processed and often updated in the database. 
+When the AL code in the trigger is finished, the transaction is automatically committed to the database and the page is refreshed with updated data.
+```
+```
+You must set the transaction type before a transaction starts, which occurs at the first database call in a trigger or in a codeunit.
+```
+```
+Transaction ends when the scope of trigger is done.
+When record(that starts the transaction) goes out of scope
+```
+- A transaction starts when: `rec.Modify()`
+
+---
+### Scenario 1: `rec.Modify()` twice in same trigger
+#### operations observed (resource_type → request_mode)
+- OBJECT → IX
+  - IX = Intent Exclusive. Signals the transaction will take exclusive locks at lower levels (page/row) in this table. It does not lock every row, but blocks conflicting table-wide locks.
+- PAGE → IU
+  - IU = Intent Update. Marks a page that contains rows this transaction may update. It coordinates row-level update/exclusive locks on that page.
+- KEY → U (twice)
+  - U = Update lock. Row/key-level lock used when a row may be updated. Compatible with readers (S), but prevents other updaters on the same row. You see two because two employees are modified in the action.
+
+### What this tells us about BC transactions
+- **One BC action = one SQL write transaction**
+  - Both `Employee.Modify(true)` calls happen inside the same SQL transaction (same `transaction_id`, `open_transaction_count = 1`).
+- Locks live for the duration of the action
+  - Even when the session shows “sleeping”, the transaction stays open and holds locks until BC commits/rolls back at the end of the trigger/action.
+- Lock hierarchy is standard SQL Server
+  - Table `OBJECT IX` → Page `PAGE IU` → Row `KEY U` reflects intent and row/update locks taken for writes.
+- Concurrency impact (simple view)
+  - Readers can often proceed (depending on isolation), but concurrent writers to the same rows/pages are blocked by `U/IU/IX`.
+  - `U` may escalate to `X` at the exact update moment; your snapshot captured the update locks in place.

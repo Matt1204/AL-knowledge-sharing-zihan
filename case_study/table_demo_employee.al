@@ -28,12 +28,15 @@ table 50110 "Demo Employee"
     // solution 1: modify in table trigger
     trigger OnModify()
     var
-        Resource: Record "Demo Resource";
+        Employee: Record "Demo Employee";
+        ValDuringTransaction: Text;
     begin
-        if Resource.Get(Rec."No.") then begin
-            Resource.Phone := Rec.Phone;
-            Resource.Modify(false);
-        end;
+        Employee.Get(Rec."No.");
+        ValDuringTransaction := Employee.Phone;
+    end;
+
+    trigger OnInsert()
+    begin
     end;
 
 
